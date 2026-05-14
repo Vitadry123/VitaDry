@@ -1,9 +1,858 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-<title>VitaDry</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smoothies Lyophilisés - Nature Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #2c3e50;
+            background: #fafaf8;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(107, 174, 82, 0.1);
+            padding: 1.2rem 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6bae52 0%, #4a8c3b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #6bae52;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #6bae52;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(107, 174, 82, 0.05) 0%, rgba(76, 175, 80, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(107, 174, 82, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(100, 200, 124, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 800px;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1a3a1a;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #6bae52;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero-text {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #6bae52 0%, #4a8c3b 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 10px 30px rgba(107, 174, 82, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(107, 174, 82, 0.3);
+        }
+
+        /* Histoire Section */
+        .histoire {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: #1a3a1a;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #6bae52;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .histoire-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .histoire-text h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .histoire-text p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .histoire-image {
+            height: 400px;
+            background: linear-gradient(135deg, rgba(107, 174, 82, 0.15) 0%, rgba(100, 200, 124, 0.1) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Produits Premium */
+        .produits {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .produits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .produit-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 1px solid rgba(107, 174, 82, 0.1);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .produit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(107, 174, 82, 0.15);
+        }
+
+        .produit-image {
+            height: 250px;
+            background: linear-gradient(135deg, rgba(107, 174, 82, 0.12) 0%, rgba(100, 200, 124, 0.08) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            border-bottom: 1px solid rgba(107, 174, 82, 0.1);
+        }
+
+        .produit-info {
+            padding: 1.5rem;
+        }
+
+        .produit-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a3a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .produit-desc {
+            color: #777;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .produit-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .prix {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6bae52;
+        }
+
+        .badge-premium {
+            background: #f5e6d3;
+            color: #c67c2e;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Design & Animations */
+        .design-section {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(107, 174, 82, 0.1);
+            transition: all 0.3s;
+        }
+
+        .feature-box:hover {
+            border-color: #6bae52;
+            box-shadow: 0 10px 30px rgba(107, 174, 82, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a3a1a;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-text {
+            color: #777;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* E-commerce */
+        .panier-section {
+            background: linear-gradient(135deg, rgba(107, 174, 82, 0.08) 0%, rgba(100, 200, 124, 0.05) 100%);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+        }
+
+        .panier-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .panier-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(107, 174, 82, 0.1);
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #1a3a1a;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-price {
+            color: #6bae52;
+            font-weight: 600;
+        }
+
+        .qty-control {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .qty-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .qty-btn:hover {
+            border-color: #6bae52;
+            color: #6bae52;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            margin-top: 2rem;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #6bae52 0%, #4a8c3b 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(107, 174, 82, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a3a1a;
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #6bae52;
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #6bae52;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(107, 174, 82, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .histoire-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .produits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>VitaDry</h1>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">🌿 Smoothies Nature</div>
+            <nav>
+                <a href="#histoire">Notre Histoire</a>
+                <a href="#produits">Produits</a>
+                <a href="#premium">Premium</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Saveurs Pures & Naturelles</h1>
+            <p class="subtitle">Smoothies Lyophilisés Haut de Gamme</p>
+            <p class="hero-text">Concentrés de fruits frais transformés en poudre premium. Nutrition maximale, goût intense, praticité absolue.</p>
+            <button class="cta-button">Découvrir nos smoothies</button>
+        </div>
+    </section>
+
+    <!-- Histoire -->
+    <section class="histoire" id="histoire">
+        <h2 class="section-title">Notre Histoire</h2>
+        <p class="section-subtitle">Passion pour la pureté naturelle</p>
+        
+        <div class="histoire-content">
+            <div class="histoire-text">
+                <h3>Née de la passion pour la nature</h3>
+                <p>En 2018, nous avons eu une vision simple : rendre accessible la vraie nutrition, sans artifices. Les smoothies lyophilisés étaient la solution idéale pour préserver tous les nutriments essentiels des fruits.</p>
+                <p>Chaque recette est née du désir de créer quelque chose de plus qu'un simple produit. C'est une promesse de pureté, de saveur authentique et de bien-être.</p>
+                <p>Aujourd'hui, nous travaillons avec les meilleurs producteurs bio pour vous offrir les meilleures formules. Votre santé est notre mission.</p>
+            </div>
+            <div class="histoire-image">🌱</div>
+        </div>
+    </section>
+
+    <!-- Produits -->
+    <section class="produits" id="produits">
+        <h2 class="section-title">Nos Collections</h2>
+        <p class="section-subtitle">Saveurs ensoleillées et énergisantes</p>
+        
+        <div class="produits-grid">
+            <div class="produit-card">
+                <div class="produit-image">🍓</div>
+                <div class="produit-info">
+                    <div class="produit-name">Fraise Passion</div>
+                    <p class="produit-desc">Mélange vibrant de fraises et passion. Antioxydants et vitamine C.</p>
+                    <div class="produit-footer">
+                        <span class="prix">24,99€</span>
+                        <span class="badge-premium">Bio</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="produit-card">
+                <div class="produit-image">🥭</div>
+                <div class="produit-info">
+                    <div class="produit-name">Mangue Coco</div>
+                    <p class="produit-desc">Tropique en poudre. Saveur douce et crémeuse pour vos matinales.</p>
+                    <div class="produit-footer">
+                        <span class="prix">26,99€</span>
+                        <span class="badge-premium">Premium</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="produit-card">
+                <div class="produit-image">🍎</div>
+                <div class="produit-info">
+                    <div class="produit-name">Pomme Gingembre</div>
+                    <p class="produit-desc">Énergie naturelle. Idéal pour dynamiser votre journée.</p>
+                    <div class="produit-footer">
+                        <span class="prix">22,99€</span>
+                        <span class="badge-premium">Bio</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="produit-card">
+                <div class="produit-image">🫐</div>
+                <div class="produit-info">
+                    <div class="produit-name">Myrtilles Açaï</div>
+                    <p class="produit-desc">Superfruit concentré. Antioxydants puissants et saveur riche.</p>
+                    <div class="produit-footer">
+                        <span class="prix">27,99€</span>
+                        <span class="badge-premium">Premium</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="produit-card">
+                <div class="produit-image">🥝</div>
+                <div class="produit-info">
+                    <div class="produit-name">Kiwi Ananas</div>
+                    <p class="produit-desc">Explosion de saveurs tropicales. Frais et revitalisant.</p>
+                    <div class="produit-footer">
+                        <span class="prix">23,99€</span>
+                        <span class="badge-premium">Bio</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="produit-card">
+                <div class="produit-image">🍊</div>
+                <div class="produit-info">
+                    <div class="produit-name">Orange Citron</div>
+                    <p class="produit-desc">Classique revisité. Zeste d'énergie et de vitalité.</p>
+                    <div class="produit-footer">
+                        <span class="prix">21,99€</span>
+                        <span class="badge-premium">Bio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium -->
+    <section class="design-section" id="premium">
+        <h2 class="section-title">Offre Premium</h2>
+        <p class="section-subtitle">Expérience exclusive pour les amoureux de qualité</p>
+
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon">✨</div>
+                <div class="feature-title">100% Pur</div>
+                <p class="feature-text">Sans additifs, colorants ni sucres ajoutés. Juste de la nature concentrée.</p>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Nutrition Maximale</div>
+                <p class="feature-text">La lyophilisation préserve 95% des nutriments et vitamines essentiels.</p>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon">🌍</div>
+                <div class="feature-title">Eco-Responsable</div>
+                <p class="feature-text">Emballage recyclable, sourcing durable, production bas-carbone.</p>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon">🚀</div>
+                <div class="feature-title">Pratique</div>
+                <p class="feature-text">Une cuillère dans l'eau, le lait ou le yaourt. Prêt en 30 secondes.</p>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-title">Conservation</div>
+                <p class="feature-text">3 ans de conservation. Parfait pour vos voyages et emergencies.</p>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon">💚</div>
+                <div class="feature-title">Santé</div>
+                <p class="feature-text">Soutient l'immunité, l'énergie et la vitalité naturellement.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- E-commerce -->
+    <section class="produits">
+        <div class="panier-section">
+            <div class="panier-container">
+                <h2 style="color: #1a3a1a; margin-bottom: 2rem; text-align: center;">Mon Panier</h2>
+                
+                <div class="panier-item">
+                    <div class="item-info">
+                        <div class="item-name">Myrtilles Açaï</div>
+                        <div class="item-price">27,99€</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="qty-btn">−</button>
+                        <span style="font-weight: 600; color: #2c3e50; min-width: 30px; text-align: center;">2</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                </div>
+
+                <div class="panier-item">
+                    <div class="item-info">
+                        <div class="item-name">Fraise Passion</div>
+                        <div class="item-price">24,99€</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="qty-btn">−</button>
+                        <span style="font-weight: 600; color: #2c3e50; min-width: 30px; text-align: center;">1</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                </div>
+
+                <div class="panier-item">
+                    <div class="item-info">
+                        <div class="item-name">Mangue Coco</div>
+                        <div class="item-price">26,99€</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="qty-btn">−</button>
+                        <span style="font-weight: 600; color: #2c3e50; min-width: 30px; text-align: center;">1</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                </div>
+
+                <div style="padding: 1.5rem; background: white; border-radius: 10px; border: 1px solid rgba(107, 174, 82, 0.1); margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                        <span style="color: #777;">Sous-total</span>
+                        <span style="font-weight: 600; color: #2c3e50;">157,96€</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                        <span style="color: #777;">Livraison</span>
+                        <span style="font-weight: 600; color: #2c3e50;">Gratuite</span>
+                    </div>
+                    <div style="border-top: 1px solid rgba(107, 174, 82, 0.1); padding-top: 1rem; display: flex; justify-content: space-between;">
+                        <span style="font-weight: 700; color: #1a3a1a; font-size: 1.1rem;">Total</span>
+                        <span style="font-weight: 700; color: #6bae52; font-size: 1.2rem;">157,96€</span>
+                    </div>
+                </div>
+
+                <button class="checkout-btn">Procéder au paiement</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="produits" id="contact" style="margin-bottom: 0;">
+        <h2 class="section-title">Nous Contacter</h2>
+        <p class="section-subtitle">Nous sommes là pour vos questions</p>
+
+        <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 15px; border: 1px solid rgba(107, 174, 82, 0.1);">
+            <form style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #2c3e50;">Votre nom</label>
+                    <input type="text" placeholder="Jean Dupont" style="width: 100%; padding: 0.8rem; border: 1px solid rgba(107, 174, 82, 0.2); border-radius: 8px; font-family: 'Poppins', sans-serif;">
+                </div>
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #2c3e50;">Email</label>
+                    <input type="email" placeholder="vous@example.com" style="width: 100%; padding: 0.8rem; border: 1px solid rgba(107, 174, 82, 0.2); border-radius: 8px; font-family: 'Poppins', sans-serif;">
+                </div>
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #2c3e50;">Message</label>
+                    <textarea placeholder="Votre message..." rows="5" style="width: 100%; padding: 0.8rem; border: 1px solid rgba(107, 174, 82, 0.2); border-radius: 8px; font-family: 'Poppins', sans-serif;"></textarea>
+                </div>
+                <button type="submit" class="cta-button" style="width: 100%;">Envoyer</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>À propos</h4>
+                <a href="#">Notre histoire</a>
+                <a href="#">Qualité</a>
+                <a href="#">Environnement</a>
+            </div>
+            <div class="footer-section">
+                <h4>Produits</h4>
+                <a href="#">Collections</a>
+                <a href="#">Recettes</a>
+                <a href="#">Bien-être</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="#">Contact</a>
+                <a href="#">FAQ</a>
+                <a href="#">Livraison</a>
+            </div>
+            <div class="footer-section">
+                <h4>Légal</h4>
+                <a href="#">Conditions</a>
+                <a href="#">Confidentialité</a>
+                <a href="#">Cookies</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Smoothies Nature Premium. Tous droits réservés. 🌿</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animations au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.produit-card, .feature-box').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Boutons panier
+        document.querySelectorAll('.qty-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const currentQty = e.target.parentElement.querySelector('span');
+                const change = e.target.textContent === '+' ? 1 : -1;
+                const newQty = Math.max(1, parseInt(currentQty.textContent) + change);
+                currentQty.textContent = newQty;
+            });
+        });
+
+        // Scroll smooth
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
